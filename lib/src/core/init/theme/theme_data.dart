@@ -23,8 +23,6 @@ class AppThemeLight extends AppTheme with ITheme {
           headline3: textThemeLight!.headline3,
           headline4: textThemeLight!.headline4,
           headline5: textThemeLight!.headline5,
-          bodyText1: textThemeLight!.bodyText1,
-          bodyText2: textThemeLight!.bodyText2,
           button: textThemeLight!.button,
         ),
         appBarTheme: ThemeData.light().appBarTheme.copyWith(
