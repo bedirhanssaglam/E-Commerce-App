@@ -1,7 +1,11 @@
 enum IconEnums {
-  menu('menu'),
   loading('loading'),
-  profile('profile');
+  profile('profile'),
+  banner('banner'),
+  sayHello('say_hello'),
+  firstIntro('first_intro'),
+  secondIntro('second_intro'),
+  thirdIntro('third_intro');
 
   final String iconName;
   const IconEnums(this.iconName);

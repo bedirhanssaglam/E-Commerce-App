@@ -11,7 +11,10 @@ class ColorConstants {
 
   Color black = const Color(0xFF252525);
   Color emerald = const Color(0xFF51CF67);
+  Color atlantis = const Color(0xFF50D63B);
   Color carnation = const Color(0xFFFB5E5D);
-  Color coral = const Color(0xFFFF7643);
-  Color peachCream = const Color(0xFFFFECDF);
+  Color flamingo = const Color(0xFFF16A26);
+  Color jaffa = const Color(0xFFF17547);
+  Color azure = const Color(0xFF1383F1);
+  Color alabester = const Color(0xFFF8F8F8);
 }

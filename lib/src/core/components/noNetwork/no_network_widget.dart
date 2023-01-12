@@ -49,7 +49,7 @@ class _NoNetworkWidgetState extends State<NoNetworkWidget> with StateMixin {
           ? CrossFadeState.showFirst
           : CrossFadeState.showSecond,
       firstChild: Material(
-        color: ColorConstants.instance.peachCream,
+        color: Colors.white,
         child: SizedBox(
           height: context.height,
           width: double.infinity,

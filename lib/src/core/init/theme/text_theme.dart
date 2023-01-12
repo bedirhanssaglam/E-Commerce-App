@@ -56,6 +56,6 @@ class TextThemeLight {
 
   final TextStyle button = TextStyle(
     fontSize: 18.sp,
-    color: ColorConstants.instance.peachCream,
+    color: Colors.white,
   );
 }

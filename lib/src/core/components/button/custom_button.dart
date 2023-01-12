@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class ButtonWidget extends StatefulWidget {
+class CustomButton extends StatefulWidget {
   final String? text;
   final double? width;
   final double? height;
@@ -12,7 +12,7 @@ class ButtonWidget extends StatefulWidget {
   final Color? textColor;
   final FontWeight? fontWeight;
 
-  const ButtonWidget({
+  const CustomButton({
     Key? key,
     this.text = "",
     this.width = 90,
@@ -24,10 +24,10 @@ class ButtonWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<ButtonWidget> createState() => _ButtonWidgetState();
+  State<CustomButton> createState() => _CustomButtonState();
 }
 
-class _ButtonWidgetState extends State<ButtonWidget>
+class _CustomButtonState extends State<CustomButton>
     with SingleTickerProviderStateMixin {
   late double _scale;
   late AnimationController _controller;
@@ -72,7 +72,7 @@ class _ButtonWidgetState extends State<ButtonWidget>
           height: widget.height?.h,
           width: widget.width?.w,
           decoration: BoxDecoration(
-            color: ColorConstants.instance.coral,
+            color: ColorConstants.instance.flamingo,
             boxShadow: const [
               BoxShadow(
                 offset: Offset(1, 1),
@@ -80,7 +80,7 @@ class _ButtonWidgetState extends State<ButtonWidget>
                 blurRadius: 1,
               ),
             ],
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(15),
           ),
           child: Center(
             child: Text(

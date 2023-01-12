@@ -1,6 +1,7 @@
 import 'package:e_commerce/src/core/constants/app/color_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../constants/app/app_constants.dart';
 import 'app_theme.dart';
 import 'interface_text_theme.dart';
@@ -29,10 +30,10 @@ class AppThemeLight extends AppTheme with ITheme {
             centerTitle: true,
             titleTextStyle: TextStyle(color: ColorConstants.instance.black),
             color: Colors.white,
-            elevation: 0,
+            elevation: 1,
             iconTheme: IconThemeData(
               color: ColorConstants.instance.black,
-              size: 21,
+              size: 17.sp,
             ),
             systemOverlayStyle: SystemUiOverlayStyle.dark),
         inputDecorationTheme: InputDecorationTheme(
