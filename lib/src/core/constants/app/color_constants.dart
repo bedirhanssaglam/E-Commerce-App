@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class ColorConstants {
   static ColorConstants? _instance;
   static ColorConstants get instance {
@@ -6,4 +8,7 @@ class ColorConstants {
   }
 
   ColorConstants._init();
+
+  Color black = const Color(0xFF252525);
+  Color carnation = const Color(0xFFFB5E5D);
 }

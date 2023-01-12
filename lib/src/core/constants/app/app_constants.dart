@@ -8,4 +8,5 @@ class AppConstants {
   AppConstants._init();
 
   final String appName = "The e-Commerce";
+  final String fontFamily = 'MonaSans';
 }

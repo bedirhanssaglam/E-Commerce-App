@@ -23,6 +23,9 @@ dependencies:
   #Extensions
   kartal: ^2.7.0
 
+  #Design
+  sensors_plus: ^2.0.1
+
   #JsonAnnotation
   json_annotation: ^4.7.0
 

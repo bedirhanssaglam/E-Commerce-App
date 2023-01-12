@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
-import 'src/view/home/view/home_view.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
+import 'src/core/base/singleton/base_singleton.dart';
+import 'src/core/init/routes/app_router.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatelessWidget with BaseSingleton {
+  MyApp({super.key});
+
+  final AppRouter _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        fontFamily: 'MonaSans',
-        primarySwatch: Colors.blue,
-      ),
-      home: const HomeView(),
+    return ResponsiveSizer(
+      builder: (context, orientation, screenType) {
+        return MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          title: constants.appName,
+          theme: theme.theme,
+          routeInformationParser: _appRouter.defaultRouteParser(),
+          routerDelegate: _appRouter.delegate(),
+        );
+      },
     );
   }
 }
