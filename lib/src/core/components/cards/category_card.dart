@@ -28,8 +28,8 @@ class CategoryCard extends StatelessWidget with BaseSingleton {
         ),
       ),
       child: Container(
-        height: 10.h,
-        width: 20.w,
+        height: 8.h,
+        width: 25.w,
         decoration: BoxDecoration(
           color: colors.emerald.withOpacity(.9),
           borderRadius: BorderRadius.circular(8),

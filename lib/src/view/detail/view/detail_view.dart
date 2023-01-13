@@ -3,77 +3,112 @@ import 'package:e_commerce/src/core/components/button/custom_button.dart';
 import 'package:e_commerce/src/core/components/snackbar/snackbar_widget.dart';
 import 'package:e_commerce/src/core/constants/app/color_constants.dart';
 import 'package:e_commerce/src/core/extensions/num_extensions.dart';
+import 'package:e_commerce/src/core/init/network/dio_manager.dart';
+import 'package:e_commerce/src/view/home/service/product_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:kartal/kartal.dart';
+import 'package:auto_route/auto_route.dart';
+
+import '../../../core/base/singleton/base_singleton.dart';
+import '../../../core/components/animation/animationUtils/animate_in_effect.dart';
+import '../viewModel/detail_view_model.dart';
 
 class DetailView extends StatefulWidget {
-  const DetailView({super.key});
+  const DetailView({super.key, required this.id});
+
+  final int id;
 
   @override
   State<DetailView> createState() => _DetailViewState();
 }
 
-class _DetailViewState extends State<DetailView> {
+class _DetailViewState extends State<DetailView> with BaseSingleton {
+  final DetailViewModel _detailViewModel = DetailViewModel(
+    ProductService(DioManager.instance.dio),
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    _detailViewModel.fetchProductByIdService(id: widget.id);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            _buildProductImage(),
-            3.h.ph,
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 4.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildProductTitle(context),
-                  2.h.ph,
-                  _buildProductRating(),
-                  2.h.ph,
-                  _buildProductPriceAndStockStatus(context),
-                  3.h.ph,
-                  _buildProductDescription(context),
-                  5.h.ph,
-                  CustomButton(
-                    onTap: () => snackbarWidget(
-                      context,
-                      message: "This feature is not yet supported.",
-                      isSuccess: false,
-                    ),
-                    text: "Add to Cart",
-                  ),
-                ],
-              ),
-            ),
-          ],
+        child: AnimateInEffect(
+          keepAlive: true,
+          child: Observer(
+            builder: (_) {
+              switch (_detailViewModel.productDetailServiceState) {
+                case ProductDetailServiceState.loading:
+                  return functions.platformIndicator();
+                case ProductDetailServiceState.success:
+                  return _buildBody(context);
+                case ProductDetailServiceState.error:
+                  return functions.errorText("Something went wrong!");
+                default:
+                  return const SizedBox.shrink();
+              }
+            },
+          ),
         ),
       ),
     );
   }
 
-  Container _buildProductImage() {
-    return Container(
+  Column _buildBody(BuildContext context) {
+    return Column(
+      children: [
+        _buildProductImage(),
+        3.h.ph,
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 4.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildProductTitle(context),
+              1.h.ph,
+              _buildProductRating(),
+              2.h.ph,
+              _buildProductPriceAndStockStatus(context),
+              2.h.ph,
+              _buildProductDescription(context),
+              3.h.ph,
+              CustomButton(
+                onTap: () => snackbarWidget(
+                  context,
+                  message: "This feature is not yet supported.",
+                  isSuccess: false,
+                ),
+                text: "Add to Cart",
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  SizedBox _buildProductImage() {
+    return SizedBox(
       height: 40.h,
       width: double.infinity,
-      decoration: BoxDecoration(
-        color: ColorConstants.instance.seashell,
-        borderRadius: const BorderRadius.only(
-          bottomLeft: Radius.circular(20),
-          bottomRight: Radius.circular(20),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           BaseFunctions.instance.platformBackButton(
-            onPressed: () {},
+            onPressed: () {
+              context.router.pop();
+            },
           ),
           Center(
             child: Image.network(
-              "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+              _detailViewModel.product.image!,
               height: 30.h,
             ),
           ),
@@ -84,16 +119,16 @@ class _DetailViewState extends State<DetailView> {
 
   Text _buildProductTitle(BuildContext context) {
     return Text(
-      "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+      _detailViewModel.product.title!,
       style: context.textTheme.headline1?.copyWith(
         fontWeight: FontWeight.w600,
       ),
     );
   }
 
-  RatingBar _buildProductRating() {
+  Widget _buildProductRating() {
     return RatingBar.builder(
-      initialRating: 3.5,
+      initialRating: _detailViewModel.product.rating!.rate!,
       minRating: 1,
       direction: Axis.horizontal,
       allowHalfRating: true,
@@ -107,12 +142,12 @@ class _DetailViewState extends State<DetailView> {
     );
   }
 
-  Row _buildProductPriceAndStockStatus(BuildContext context) {
+  Widget _buildProductPriceAndStockStatus(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          "€ 109.95",
+          "€ ${_detailViewModel.product.price}",
           style: context.textTheme.headline1?.copyWith(
             fontWeight: FontWeight.w600,
           ),
@@ -127,8 +162,9 @@ class _DetailViewState extends State<DetailView> {
     );
   }
 
-  Column _buildProductDescription(BuildContext context) {
+  Widget _buildProductDescription(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           "Description",
@@ -138,7 +174,7 @@ class _DetailViewState extends State<DetailView> {
         ),
         2.h.ph,
         Text(
-          "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
+          _detailViewModel.product.description!,
           style: context.textTheme.subtitle1,
         ),
       ],

@@ -1,9 +1,11 @@
 import 'package:e_commerce/src/core/base/functions/base_functions.dart';
 import 'package:e_commerce/src/core/constants/app/color_constants.dart';
 import 'package:e_commerce/src/core/extensions/num_extensions.dart';
+import 'package:e_commerce/src/core/init/routes/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:auto_route/auto_route.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
@@ -11,31 +13,34 @@ class ProductCard extends StatelessWidget {
     required this.imagePath,
     required this.productName,
     required this.productPrice,
-    required this.onTap,
+    required this.id,
   }) : super(key: key);
 
   final String imagePath;
   final String productName;
   final double productPrice;
-  final VoidCallback onTap;
+  final int id;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () => context.router.push(DetailRoute(id: id)),
       child: Container(
         height: 25.h,
         width: 40.w,
         decoration: BoxDecoration(
-          color: ColorConstants.instance.alabester,
           borderRadius: BorderRadius.circular(15),
+          border: Border.all(
+            color: ColorConstants.instance.alabester,
+            width: 5,
+          ),
         ),
         child: Column(
           children: [
-            2.h.ph,
+            1.h.ph,
             Image.network(
               imagePath,
-              height: 11.h,
+              height: 10.h,
             ),
             Padding(
               padding: EdgeInsets.all(10.sp),

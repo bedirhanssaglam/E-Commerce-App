@@ -7,7 +7,8 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:kartal/kartal.dart';
 
 import '../../../core/base/singleton/base_singleton.dart';
-import '../../../core/components/cards/product_card.dart';
+import '../../../core/components/animation/animationUtils/animate_in_effect.dart';
+import '../../../core/components/productList/product_list.dart';
 import '../../home/model/product_model.dart';
 import '../../home/service/product_service.dart';
 import '../viewModel/products_view_model.dart';
@@ -43,60 +44,47 @@ class _ProductsViewState extends State<ProductsView> with BaseSingleton {
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 4.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                3.h.ph,
-                RichText(
-                  text: TextSpan(
-                    style: context.textTheme.headline1,
-                    children: [
-                      const TextSpan(
-                        text: "Products are listed for the ",
-                      ),
-                      TextSpan(
-                        text: widget.category,
-                        style: context.textTheme.headline1?.copyWith(
-                          color: colors.flamingo,
+            child: AnimateInEffect(
+              keepAlive: true,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  3.h.ph,
+                  RichText(
+                    text: TextSpan(
+                      style: context.textTheme.headline1,
+                      children: [
+                        const TextSpan(
+                          text: "Products are listed for the ",
                         ),
-                      ),
-                    ],
+                        TextSpan(
+                          text: widget.category,
+                          style: context.textTheme.headline1?.copyWith(
+                            color: colors.flamingo,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                3.h.ph,
-                Observer(
-                  builder: (_) {
-                    switch (_productsViewModel.productByCategoryState) {
-                      case ProductByCategoryState.loading:
-                        return functions.platformIndicator();
-                      case ProductByCategoryState.success:
-                        List<ProductModel> _productsList =
-                            _productsViewModel.products;
-                        return GridView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 4.w,
-                            mainAxisSpacing: 2.h,
-                          ),
-                          itemCount: _productsList.length,
-                          itemBuilder: (context, index) => ProductCard(
-                            imagePath: _productsList[index].image!,
-                            productName: _productsList[index].title!,
-                            productPrice: _productsList[index].price!,
-                            onTap: () {},
-                          ),
-                        );
-                      case ProductByCategoryState.error:
-                        return functions.errorText("Something went wrong!");
-                      default:
-                        return const SizedBox.shrink();
-                    }
-                  },
-                )
-              ],
+                  3.h.ph,
+                  Observer(
+                    builder: (_) {
+                      switch (_productsViewModel.productByCategoryState) {
+                        case ProductByCategoryState.loading:
+                          return functions.platformIndicator();
+                        case ProductByCategoryState.success:
+                          List<ProductModel> _productsList =
+                              _productsViewModel.products;
+                          return ProductList(productsList: _productsList);
+                        case ProductByCategoryState.error:
+                          return functions.errorText("Something went wrong!");
+                        default:
+                          return const SizedBox.shrink();
+                      }
+                    },
+                  )
+                ],
+              ),
             ),
           ),
         ),

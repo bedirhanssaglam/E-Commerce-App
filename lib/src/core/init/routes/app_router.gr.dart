@@ -24,9 +24,13 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     DetailRoute.name: (routeData) {
+      final args = routeData.argsAs<DetailRouteArgs>();
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const DetailView(),
+        child: DetailView(
+          key: args.key,
+          id: args.id,
+        ),
       );
     },
     ProductsRoute.name: (routeData) {
@@ -72,14 +76,36 @@ class HomeRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [DetailView]
-class DetailRoute extends PageRouteInfo<void> {
-  const DetailRoute()
-      : super(
+class DetailRoute extends PageRouteInfo<DetailRouteArgs> {
+  DetailRoute({
+    Key? key,
+    required int id,
+  }) : super(
           DetailRoute.name,
           path: '/detail',
+          args: DetailRouteArgs(
+            key: key,
+            id: id,
+          ),
         );
 
   static const String name = 'DetailRoute';
+}
+
+class DetailRouteArgs {
+  const DetailRouteArgs({
+    this.key,
+    required this.id,
+  });
+
+  final Key? key;
+
+  final int id;
+
+  @override
+  String toString() {
+    return 'DetailRouteArgs{key: $key, id: $id}';
+  }
 }
 
 /// generated route for

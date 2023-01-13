@@ -1,3 +1,4 @@
+import 'package:e_commerce/src/core/components/animation/animationUtils/animated_text.dart';
 import 'package:e_commerce/src/core/components/appbar/appbar.dart';
 import 'package:e_commerce/src/core/constants/enums/icon_enums.dart';
 import 'package:e_commerce/src/core/extensions/num_extensions.dart';
@@ -11,9 +12,12 @@ import 'package:kartal/kartal.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../core/base/singleton/base_singleton.dart';
+import '../../../core/components/animation/animationUtils/animated_scroll_view_item.dart';
+import '../../../core/components/animation/animationUtils/animate_in_effect.dart';
+import '../../../core/components/animation/animationUtils/fade_in_effect.dart';
 import '../../../core/components/cards/banner_card.dart';
 import '../../../core/components/cards/category_card.dart';
-import '../../../core/components/cards/product_card.dart';
+import '../../../core/components/productList/product_list.dart';
 import '../model/product_model.dart';
 import '../viewModel/home_view_model.dart';
 
@@ -41,41 +45,49 @@ class _HomeViewState extends State<HomeView> with BaseSingleton {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 4.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              4.h.ph,
-              _buildHeader(context),
-              2.h.ph,
-              _buildScrollableBanner(),
-              3.h.ph,
-              Text(
-                'Top Categories',
-                style: context.textTheme.headline2?.copyWith(
-                  fontWeight: FontWeight.w600,
+          child: AnimateInEffect(
+            keepAlive: true,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                4.h.ph,
+                _buildHeader(context),
+                2.h.ph,
+                _buildScrollableBanner(),
+                3.h.ph,
+                FadeInEffect(
+                  child: Text(
+                    'Top Categories',
+                    style: context.textTheme.headline2?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ),
-              ),
-              3.h.ph,
-              SizedBox(
-                height: 10.h,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: constants.categoryImages.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: EdgeInsets.only(right: 6.w),
-                      child: CategoryCard(
-                        imagePath: constants.categoryImages[index],
-                        categoryName: constants.categoryNames[index],
-                      ),
-                    );
-                  },
+                3.h.ph,
+                SizedBox(
+                  height: 10.h,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    cacheExtent: 0,
+                    itemCount: constants.categoryImages.length,
+                    itemBuilder: (context, index) {
+                      return AnimatedScrollViewItem(
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 6.w),
+                          child: CategoryCard(
+                            imagePath: constants.categoryImages[index],
+                            categoryName: constants.categoryNames[index],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
-              ),
-              4.h.ph,
-              _buildProductList(),
-              4.h.ph,
-            ],
+                4.h.ph,
+                _buildProductList(),
+                4.h.ph,
+              ],
+            ),
           ),
         ),
       ),
@@ -88,9 +100,9 @@ class _HomeViewState extends State<HomeView> with BaseSingleton {
       children: [
         Row(
           children: [
-            Text(
+            AnimatedText(
               "Welcome back!",
-              style: context.textTheme.headline2?.copyWith(
+              textStyle: context.textTheme.headline2?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -99,9 +111,9 @@ class _HomeViewState extends State<HomeView> with BaseSingleton {
           ],
         ),
         1.h.ph,
-        Text(
+        AnimatedText(
           "Let's start shopping!",
-          style: context.textTheme.subtitle2?.copyWith(
+          textStyle: context.textTheme.subtitle2?.copyWith(
             color: colors.black.withOpacity(.5),
           ),
         ),
@@ -135,22 +147,7 @@ class _HomeViewState extends State<HomeView> with BaseSingleton {
             return functions.platformIndicator();
           case ProductServiceState.success:
             List<ProductModel> _productsList = _homeViewModel.products;
-            return GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 4.w,
-                mainAxisSpacing: 2.h,
-              ),
-              itemCount: _productsList.length,
-              itemBuilder: (context, index) => ProductCard(
-                imagePath: _productsList[index].image!,
-                productName: _productsList[index].title!,
-                productPrice: _productsList[index].price!,
-                onTap: () {},
-              ),
-            );
+            return ProductList(productsList: _productsList);
           case ProductServiceState.error:
             return functions.errorText("Something went wrong!");
           default:
