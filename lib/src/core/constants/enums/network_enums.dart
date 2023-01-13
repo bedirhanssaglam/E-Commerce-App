@@ -1,1 +1,1 @@
-enum NetworkEnums { product, category }
+enum NetworkEnums { products, category }
