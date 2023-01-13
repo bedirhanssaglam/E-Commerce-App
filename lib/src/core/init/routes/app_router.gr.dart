@@ -35,11 +35,11 @@ class _$AppRouter extends RootStackRouter {
   List<RouteConfig> get routes => [
         RouteConfig(
           HomeRoute.name,
-          path: '/home',
+          path: '/',
         ),
         RouteConfig(
           DetailRoute.name,
-          path: '/',
+          path: '/detail',
         ),
       ];
 }
@@ -50,7 +50,7 @@ class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute()
       : super(
           HomeRoute.name,
-          path: '/home',
+          path: '/',
         );
 
   static const String name = 'HomeRoute';
@@ -62,7 +62,7 @@ class DetailRoute extends PageRouteInfo<void> {
   const DetailRoute()
       : super(
           DetailRoute.name,
-          path: '/',
+          path: '/detail',
         );
 
   static const String name = 'DetailRoute';

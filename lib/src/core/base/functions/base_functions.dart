@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BaseFunctions {
@@ -10,6 +11,14 @@ class BaseFunctions {
   }
 
   BaseFunctions._init();
+
+  Widget platformIndicator() {
+    return Center(
+      child: Platform.isIOS
+          ? const CupertinoActivityIndicator()
+          : const CircularProgressIndicator(),
+    );
+  }
 
   IconButton platformBackButton({
     required VoidCallback onPressed,
@@ -32,7 +41,15 @@ class BaseFunctions {
           );
   }
 
-  closePopup(BuildContext context) {
-    Navigator.of(context, rootNavigator: true).pop();
+  Widget errorText(String errorMessage) {
+    return Center(
+      child: Text(errorMessage),
+    );
+  }
+
+  String toShortString(String value, {int countCharacter = 15}) {
+    return value.length > countCharacter
+        ? "${value.substring(0, countCharacter)}..."
+        : value;
   }
 }
