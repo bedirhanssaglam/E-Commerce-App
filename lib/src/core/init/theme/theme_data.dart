@@ -27,15 +27,12 @@ class AppThemeLight extends AppTheme with ITheme {
           button: textThemeLight!.button,
         ),
         appBarTheme: ThemeData.light().appBarTheme.copyWith(
-            centerTitle: true,
-            titleTextStyle: TextStyle(color: ColorConstants.instance.black),
-            color: Colors.white,
-            elevation: 1,
-            iconTheme: IconThemeData(
-              color: ColorConstants.instance.black,
-              size: 17.sp,
+              elevation: 0,
+              centerTitle: true,
+              titleTextStyle: TextStyle(color: ColorConstants.instance.black),
+              color: Colors.white,
+              systemOverlayStyle: SystemUiOverlayStyle.light,
             ),
-            systemOverlayStyle: SystemUiOverlayStyle.dark),
         inputDecorationTheme: InputDecorationTheme(
             focusColor: ColorConstants.instance.black,
             contentPadding: EdgeInsets.zero,

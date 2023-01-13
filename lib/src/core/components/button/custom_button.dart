@@ -29,7 +29,7 @@ class CustomButton extends StatefulWidget {
 
 class _CustomButtonState extends State<CustomButton>
     with SingleTickerProviderStateMixin {
-  late double _scale;
+  late double scale;
   late AnimationController _controller;
 
   @override
@@ -61,13 +61,13 @@ class _CustomButtonState extends State<CustomButton>
 
   @override
   Widget build(BuildContext context) {
-    _scale = 1 - _controller.value;
+    final double scale = 1 - _controller.value;
     return GestureDetector(
       onTapDown: _tapDown,
       onTapUp: _tapUp,
       onTap: widget.onTap,
       child: Transform.scale(
-        scale: _scale,
+        scale: scale,
         child: Container(
           height: widget.height?.h,
           width: widget.width?.w,
