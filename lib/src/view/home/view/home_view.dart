@@ -1,4 +1,3 @@
-import 'package:e_commerce/src/core/base/functions/base_functions.dart';
 import 'package:e_commerce/src/core/components/appbar/appbar.dart';
 import 'package:e_commerce/src/core/constants/enums/icon_enums.dart';
 import 'package:e_commerce/src/core/extensions/num_extensions.dart';
@@ -61,14 +60,21 @@ class _HomeViewState extends State<HomeView> with BaseSingleton {
                 height: 10.h,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 4,
+                  itemCount: constants.categoryImages.length,
                   itemBuilder: (context, index) {
-                    return const CategoryCard();
+                    return Padding(
+                      padding: EdgeInsets.only(right: 6.w),
+                      child: CategoryCard(
+                        imagePath: constants.categoryImages[index],
+                        categoryName: constants.categoryNames[index],
+                      ),
+                    );
                   },
                 ),
               ),
               4.h.ph,
               _buildProductList(),
+              4.h.ph,
             ],
           ),
         ),

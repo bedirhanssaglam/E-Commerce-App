@@ -1,7 +1,6 @@
 import 'package:e_commerce/src/core/constants/app/color_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../constants/app/app_constants.dart';
 import 'app_theme.dart';
 import 'interface_text_theme.dart';

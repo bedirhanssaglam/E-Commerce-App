@@ -52,4 +52,19 @@ class BaseFunctions {
         ? "${value.substring(0, countCharacter)}..."
         : value;
   }
+
+  String? checkEndpoint(String? category) {
+    switch (category) {
+      case "Electronics":
+        return "electronics";
+      case "Men":
+        return "men's clothing";
+      case "Women":
+        return "women's clothing";
+      case "Jewelery":
+        return "jewelery";
+      default:
+        return null;
+    }
+  }
 }
