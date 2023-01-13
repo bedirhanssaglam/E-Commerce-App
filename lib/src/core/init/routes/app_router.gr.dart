@@ -23,6 +23,14 @@ class _$AppRouter extends RootStackRouter {
         child: const SplashView(),
       );
     },
+    IntroRoute.name: (routeData) {
+      final args = routeData.argsAs<IntroRouteArgs>(
+          orElse: () => const IntroRouteArgs());
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: IntroView(key: args.key),
+      );
+    },
     HomeRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
@@ -58,6 +66,10 @@ class _$AppRouter extends RootStackRouter {
           path: '/',
         ),
         RouteConfig(
+          IntroRoute.name,
+          path: '/intro',
+        ),
+        RouteConfig(
           HomeRoute.name,
           path: '/home',
         ),
@@ -82,6 +94,30 @@ class SplashRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SplashRoute';
+}
+
+/// generated route for
+/// [IntroView]
+class IntroRoute extends PageRouteInfo<IntroRouteArgs> {
+  IntroRoute({Key? key})
+      : super(
+          IntroRoute.name,
+          path: '/intro',
+          args: IntroRouteArgs(key: key),
+        );
+
+  static const String name = 'IntroRoute';
+}
+
+class IntroRouteArgs {
+  const IntroRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'IntroRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for

@@ -1,4 +1,3 @@
-import 'package:e_commerce/src/core/extensions/num_extensions.dart';
 import 'package:e_commerce/src/core/extensions/string_extensions.dart';
 import 'package:e_commerce/src/core/init/routes/app_router.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +47,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
               ..duration = composition.duration
               ..forward().whenComplete(
                 () => context.router.push(
-                  const HomeRoute(),
+                  IntroRoute(),
                 ),
               );
           },

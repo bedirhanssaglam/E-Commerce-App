@@ -9,7 +9,7 @@ class AppConstants {
 
   AppConstants._init();
 
-  final String appName = "The e-Commerce";
+  final String appName = "Shop Bag";
   final String fontFamily = 'MonaSans';
 
   final List<String> categoryImages = [
@@ -24,5 +24,23 @@ class AppConstants {
     "Women",
     "Men",
     "Jewelery",
+  ];
+
+  List<Map<String, String>> splashData = [
+    {
+      "text":
+          "Free shipping on millions of items. Get the best of Shopping and entertainment with Shop Bag. Enjoy low prices.",
+      "image": IconEnums.firstIntro.iconName,
+    },
+    {
+      "text":
+          "Enjoy the privilege of free and fast delivery for your purchases on valid products with Shop Bag. Find out how quickly your orders will be delivered in which city.",
+      "image": IconEnums.secondIntro.iconName,
+    },
+    {
+      "text":
+          "Catch the selected deals on the 'Deals of the Day' page before anyone else. Also, take advantage of special discounts and opportunity days only for Shop Bag members.",
+      "image": IconEnums.thirdIntro.iconName,
+    },
   ];
 }

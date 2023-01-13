@@ -10,6 +10,7 @@ class ColorConstants {
   ColorConstants._init();
 
   Color black = const Color(0xFF252525);
+  Color silver = const Color(0xFFC6C6C6);
   Color emerald = const Color(0xFF51CF67);
   Color atlantis = const Color(0xFF50D63B);
   Color carnation = const Color(0xFFFB5E5D);
