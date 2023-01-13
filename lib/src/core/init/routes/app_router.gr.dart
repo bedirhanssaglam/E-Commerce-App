@@ -17,6 +17,12 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    SplashRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const SplashView(),
+      );
+    },
     HomeRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
@@ -48,8 +54,12 @@ class _$AppRouter extends RootStackRouter {
   @override
   List<RouteConfig> get routes => [
         RouteConfig(
-          HomeRoute.name,
+          SplashRoute.name,
           path: '/',
+        ),
+        RouteConfig(
+          HomeRoute.name,
+          path: '/home',
         ),
         RouteConfig(
           DetailRoute.name,
@@ -63,12 +73,24 @@ class _$AppRouter extends RootStackRouter {
 }
 
 /// generated route for
+/// [SplashView]
+class SplashRoute extends PageRouteInfo<void> {
+  const SplashRoute()
+      : super(
+          SplashRoute.name,
+          path: '/',
+        );
+
+  static const String name = 'SplashRoute';
+}
+
+/// generated route for
 /// [HomeView]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute()
       : super(
           HomeRoute.name,
-          path: '/',
+          path: '/home',
         );
 
   static const String name = 'HomeRoute';
