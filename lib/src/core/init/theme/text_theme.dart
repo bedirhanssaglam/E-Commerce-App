@@ -43,7 +43,7 @@ class TextThemeLight {
   );
 
   final TextStyle subtitle1 = TextStyle(
-    fontSize: 13.sp,
+    fontSize: 11.sp,
     fontFamily: AppConstants.instance.fontFamily,
     color: ColorConstants.instance.black,
   );

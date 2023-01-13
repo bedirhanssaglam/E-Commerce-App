@@ -22,15 +22,25 @@ class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: const HomeView(),
       );
-    }
+    },
+    DetailRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const DetailView(),
+      );
+    },
   };
 
   @override
   List<RouteConfig> get routes => [
         RouteConfig(
           HomeRoute.name,
+          path: '/home',
+        ),
+        RouteConfig(
+          DetailRoute.name,
           path: '/',
-        )
+        ),
       ];
 }
 
@@ -40,8 +50,20 @@ class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute()
       : super(
           HomeRoute.name,
-          path: '/',
+          path: '/home',
         );
 
   static const String name = 'HomeRoute';
+}
+
+/// generated route for
+/// [DetailView]
+class DetailRoute extends PageRouteInfo<void> {
+  const DetailRoute()
+      : super(
+          DetailRoute.name,
+          path: '/',
+        );
+
+  static const String name = 'DetailRoute';
 }
