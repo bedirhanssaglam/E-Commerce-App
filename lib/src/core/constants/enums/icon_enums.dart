@@ -3,7 +3,6 @@ enum IconEnums {
   firstIntro('first_intro'),
   secondIntro('second_intro'),
   thirdIntro('third_intro'),
-  loading('loading'),
   appBar('appbar'),
   profile('profile'),
   banner('banner'),

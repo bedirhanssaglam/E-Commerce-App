@@ -24,24 +24,6 @@ class TextThemeLight {
     color: ColorConstants.instance.black,
   );
 
-  final TextStyle headline3 = TextStyle(
-    fontSize: 19.sp,
-    fontFamily: AppConstants.instance.fontFamily,
-    color: ColorConstants.instance.black,
-  );
-
-  final TextStyle headline4 = TextStyle(
-    fontSize: 22.sp,
-    fontFamily: AppConstants.instance.fontFamily,
-    color: ColorConstants.instance.black,
-  );
-
-  final TextStyle headline5 = TextStyle(
-    fontSize: 25.sp,
-    fontFamily: AppConstants.instance.fontFamily,
-    color: ColorConstants.instance.black,
-  );
-
   final TextStyle subtitle1 = TextStyle(
     fontSize: 11.sp,
     fontFamily: AppConstants.instance.fontFamily,

@@ -1,4 +1,3 @@
-import 'package:e_commerce/src/core/constants/app/color_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../constants/app/app_constants.dart';
@@ -20,33 +19,15 @@ class AppThemeLight extends AppTheme with ITheme {
         textTheme: TextTheme(
           headline1: textThemeLight!.headline1,
           headline2: textThemeLight!.headline2,
-          headline3: textThemeLight!.headline3,
-          headline4: textThemeLight!.headline4,
-          headline5: textThemeLight!.headline5,
           button: textThemeLight!.button,
         ),
         appBarTheme: ThemeData.light().appBarTheme.copyWith(
               elevation: 0,
               centerTitle: true,
-              titleTextStyle: TextStyle(color: ColorConstants.instance.black),
               color: Colors.white,
               systemOverlayStyle: SystemUiOverlayStyle.light,
             ),
-        inputDecorationTheme: InputDecorationTheme(
-            focusColor: ColorConstants.instance.black,
-            contentPadding: EdgeInsets.zero,
-            filled: true,
-            enabledBorder:
-                const OutlineInputBorder(borderSide: BorderSide(width: 0.3)),
-            focusedBorder: const OutlineInputBorder()),
         scaffoldBackgroundColor: Colors.white,
-        floatingActionButtonTheme:
-            ThemeData.light().floatingActionButtonTheme.copyWith(),
-        buttonTheme: ThemeData.light().buttonTheme.copyWith(
-              colorScheme: ColorScheme.light(
-                onError: ColorConstants.instance.carnation,
-              ),
-            ),
         pageTransitionsTheme: const PageTransitionsTheme(
           builders: {
             TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
