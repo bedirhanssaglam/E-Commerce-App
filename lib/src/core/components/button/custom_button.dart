@@ -16,7 +16,7 @@ class CustomButton extends StatefulWidget {
     Key? key,
     this.text = "",
     this.width = 90,
-    this.height = 5.5,
+    this.height = 6,
     required this.onTap,
     this.fontSize = 17,
     this.textColor = Colors.white,

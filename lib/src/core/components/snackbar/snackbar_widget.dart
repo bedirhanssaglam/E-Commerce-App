@@ -22,11 +22,8 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> snackbarWidget(
     ),
     behavior: SnackBarBehavior.floating,
     duration: Duration(milliseconds: milliseconds),
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.only(
-        topRight: Radius.circular(8),
-        bottomRight: Radius.circular(8),
-      ),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10),
     ),
     backgroundColor: isSuccess!
         ? ColorConstants.instance.emerald

@@ -25,6 +25,7 @@ dependencies:
 
   #Design
   sensors_plus: ^2.0.1
+  flutter_rating_bar: ^4.0.1
 
   #JsonAnnotation
   json_annotation: ^4.7.0

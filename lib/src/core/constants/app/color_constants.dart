@@ -18,4 +18,5 @@ class ColorConstants {
   Color azure = const Color(0xFF1383F1);
   Color alabester = const Color(0xFFF8F8F8);
   Color swissCoffee = const Color(0xFFD8D3D3);
+  Color seashell = const Color(0xFFF1F1F1);
 }

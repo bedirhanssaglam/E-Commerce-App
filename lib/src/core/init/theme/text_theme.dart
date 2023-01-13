@@ -55,7 +55,7 @@ class TextThemeLight {
   );
 
   final TextStyle button = TextStyle(
-    fontSize: 18.sp,
+    fontSize: 17.sp,
     color: Colors.white,
   );
 }
