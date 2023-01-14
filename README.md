@@ -82,4 +82,6 @@ extensions: This layer and the project contain the basic structure, String and i
 
 init: This layer consists of 4 main structures. These structures are routes , network, utils, mixins and theme.
 
-- view: This layer contains our screens. We can create a folder for each screen and widgets file for this screen, if necessary, in this folder.
+- view: This layer contains our screens. We can create a folder for each screen. There is a folder for each page in the view. The subfolders of the main page are suitable for the MVVM structure.
+
+Finally, tests of all service methods are under the "test" folder.
