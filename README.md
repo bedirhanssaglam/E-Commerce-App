@@ -2,6 +2,8 @@
 
 A simple e-Commerce App with MVVM.
 
+I also published an article about this app : https://medium.com/@bedirhanssaglam/flutter-using-mobx-in-mvvm-d67c2037f87c
+
 # Application Video
 
 https://user-images.githubusercontent.com/105479937/212343773-43887573-0616-4180-b2b7-aefb02ca9080.mp4
